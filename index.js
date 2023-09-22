@@ -31,3 +31,6 @@ app.get('/test', (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
+
+const moviesRouter =require("./routes/movies");
+app.use("/movies",moviesRouter);
