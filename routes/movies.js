@@ -48,10 +48,8 @@ router
         const { title, year, rating } = req.params;
       
         if (!title || !year) {
-          return res.status(403).json({
-            status: 403,
-            error: true,
-            message: 'You cannot create a movie without providing a title and a year',
+          return res.status(403).json({ status: 403, error: true,
+             message: 'You cannot create a movie without providing a title and a year',
           });
         }
       
@@ -62,7 +60,6 @@ router
             message: 'Year must be a 4-digit number',
           });
         }
-      
         const movieRating = rating || 4;
       
         const newMovie = {
@@ -72,12 +69,18 @@ router
         };
         movies.push(newMovie);
        res.send(movies);
-      });
-      
-      // Route to read the list of movies
-// .get('/movies/read', (req, res) => {
-//         res.json(movies);
-//       });
+      })
+
+
+      .get('/delete/:id/', (req ,res) =>{
+        let id = req.params.id;
+        if(id > 0 && id <= movies.length){
+            movies.splice(movies[id],1);
+            res.send({status: 200, data:[movies]});   
+        }else{
+            res.send(`{status:404, error:true, message:'the movie <ID> does not exist'}`);
+        }
+          })
 
 
 
