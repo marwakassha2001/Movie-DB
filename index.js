@@ -21,11 +21,11 @@ app.get('/test', (req, res) => {
     res.send(`status:200, message:${formattedTime}`)
   });
 
-  app.get('/search', (req, res) => {
+  app.get('/search/', (req, res) => {
     if(req.query.search){
     res.send(`status:200,message:"ok",data=${req.query.search}`)
     }
-    res.send(`status:500,error:true,message:"you have to provide a search"`)
+    res.status(500).send(`status:500,error:true,message:"you have to provide a search"`)
   })
 
 app.listen(port, () => {

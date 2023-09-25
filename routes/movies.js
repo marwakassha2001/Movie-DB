@@ -35,6 +35,14 @@ router
 .get('/delete/', (req ,res) =>{
     res.send('delete movies')
 })
+.get('/get/id/:id/', (req ,res) =>{
+    let id = req.params.id;
+    if(id > 0 && id <= movies.length){
+        res.send({status: 200, data:movies[id]});   
+    }else{
+        res.send(`{status:404, error:true, message:'the movie ${id} does not exist'}`);
+    }
+      });
 
 
 
